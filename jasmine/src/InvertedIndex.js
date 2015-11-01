@@ -13,14 +13,14 @@ function Index() {
 
 //Inherited properties of Index constructor function
 Index.prototype = {
-  //createIndex creates an index from the json file. Takes json filepath and a callback for when asynchronous call is done executing
+  //createIndex creates an index from the json file.Takes the location of the json file as its argument.
   createIndex: function(filepath) {
 
     //returns data read from JSON file. Alternative to this is the xmlHttpRequest object used in Ajaax calls.
-    return $.getJSON(filepath);
+    return $.getJSON(filepath); 
   },
 
-  //populateIndex populates the index Array.
+  //getIndex populates the index object.
   getIndex: function(jsonFile) {
     //variables to be used in this function
     var empty = [];

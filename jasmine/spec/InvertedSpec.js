@@ -103,6 +103,7 @@ describe("Inverted Index Test", function() {
 describe('Error handling', function() {
   it("Should throw an error for passing a typeof 'number' argument", function() {
         expect(function() {testIndex.searchIndex(4);}).toThrow(new Error('Should be a string'));
+        expect(function() {testIndex.searchIndex("gerty", 4, "alice");}).toThrow(new Error('Should be a string'));
       });
     });
   });
