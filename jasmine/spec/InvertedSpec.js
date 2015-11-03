@@ -49,6 +49,7 @@ describe("Inverted Index Test", function() {
     });
     it("Should return true for index terms being in small case", function() {
       expect(testIndex.index[0][0]).toBe('alice');
+      expect(testIndex.index[1][13]).toBe('ring');
     });
   });
 
