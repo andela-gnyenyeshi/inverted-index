@@ -49,7 +49,7 @@ describe("Inverted Index Test", function() {
     });
     it("Should return true for index terms being in small case", function() {
       expect(testIndex.index[0][0]).toBe('alice');
-    })
+    });
   });
 
   describe("Search Index", function() {
@@ -73,7 +73,7 @@ describe("Inverted Index Test", function() {
           ['0'],
           ['Not Found']
         ]);
-      })
+      });
       it("Should return ['Not Found'] for any term not found in the index", function() {
         expect(testIndex.searchIndex(["Thor"])).toEqual([
           ['Not Found']
