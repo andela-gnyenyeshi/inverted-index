@@ -1,6 +1,6 @@
 //Inverted Index Checkpoint.
 //Gertrude Nyenyeshi
-
+"use strict";
 //Index constructor function.
 function Index() {
   //reference to itself due to scoping. 'this' may refer to global window object in any function
@@ -29,7 +29,7 @@ Index.prototype = {
     //callback function to be used in first forEach loop
     function populate(element, index, array) {
       //Concat the title and text, get rid of punctuation, convert to lower case, split, sort and store them in an array
-      var j = (jsonFile[index].title + " " + jsonFile[index].text).replace(/[,?."'/\\]/g, '').toLowerCase().split(" ").sort();
+      var j =  (jsonFile[index].title + " " + jsonFile[index].text).replace(/[,?."'\/\\]/g, '').toLowerCase().split(" ").sort();
       obj.index[index] = j;
     }
     jsonFile.forEach(populate);
@@ -95,7 +95,7 @@ Index.prototype = {
       for (var j = 0; j < terms.length; j++) {
         for (var key in obj.index) {
           //convert the search term to lower case and omit any punctuation marks
-          if (obj.index[key].indexOf(terms[j].toLowerCase().replace(/[,?."'/\\]/g, '')) !== -1) {
+          if (obj.index[key].indexOf(terms[j].toLowerCase().replace(/[,?."'\/\\]/g, '')) !== -1) {
             results.push(key);
           }
         }
@@ -113,4 +113,4 @@ Index.prototype = {
       return arr;
     }
   }
-}
+};
