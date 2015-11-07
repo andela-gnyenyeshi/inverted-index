@@ -15,7 +15,7 @@ describe("Inverted Index Test", function() {
       expect(results.length).toBeGreaterThan(0);
     });
     it("Should return true for data returned is an Array", function() {
-      expect(Array.isArray(results)).toBe(true);
+      expect(Array.isArray(results)).toBeTruthy();
     });
     it("Should confirm each object in JSON array contains a property whose value is a string", function() {
       expect(typeof results[0].title).toBe('string');
@@ -26,11 +26,11 @@ describe("Inverted Index Test", function() {
   });
 
   describe("Populate Index", function() {
+    it("Should return true for index is created after JSON file has been read", function() {
+      expect(testIndex.index).toBeDefined();
+    });
     it("Should return true for index is not empty", function() {
       expect(Object.keys(testIndex.index).length).toBeGreaterThan(0);
-    });
-    it("Should return true for index is created after JSON file has been read", function() {
-      expect(testIndex.index).not.toBeNull();
     });
     it("Should verify the index maps the string keys to the correct objects in the JSON array", function() {
       expect(testIndex.index[0]).toContain('alice');
@@ -64,48 +64,44 @@ describe("Inverted Index Test", function() {
           ['0', '1']
         ]);
       });
-      // it("Should return [['0']] for 'wonderland'", function() {
-      //   expect(testIndex.searchIndex("wonderland")).toEqual([
-      //     ['0']
-      //   ]);
-      // });
-      // it("Should accept an array of terms. Should return [['0'], ['0'], ['Not Found']] for '['alice', 'falls', 'rings']", function() {
-      //   expect(testIndex.searchIndex(["alice", "falls", "rings"])).toEqual([
-      //     ['0'],
-      //     ['0'],
-      //     ['Not Found']
-      //   ]);
-      // });
-      // it("Should return ['Not Found'] for any term not found in the index", function() {
-      //   expect(testIndex.searchIndex(["Thor"])).toEqual([
-      //     ['Not Found']
-      //   ]);
-      //   expect(testIndex.searchIndex("Hehe", "sheshe")).toEqual([
-      //     ['Not Found'],
-      //     ['Not Found']
-      //   ]);
-      // });
-      // it("Should return ['Not Found'] for an empty array and empty string", function() {
-      //   expect(testIndex.searchIndex([])).toEqual([
-      //     ['Not Found']
-      //   ]);
-      //   expect(testIndex.searchIndex("")).toEqual([
-      //     ['Not Found']
-      //   ]);
-      // });
-      // it("Should accept a string as an argument", function() {
-      //   expect(testIndex.searchIndex("Alice of, imagination")).toEqual([
-      //     ['0'],
-      //     ['0', '1'],
-      //     ['0']
-      //   ]);
-      // });
+      it("Should return [['0']] for 'wonderland'", function() {
+        expect(testIndex.searchIndex("wonderland")).toEqual([
+          ['0']
+        ]);
+      });
+      it("Should accept an array of terms. Should return [['0'], ['0'], ['Not Found']] for '['alice', 'falls', 'rings']", function() {
+        expect(testIndex.searchIndex(["alice", "falls", "rings"])).toEqual([
+          ['0'],
+          ['0'],
+          ['Not Found']
+        ]);
+      });
+      it("Should return ['Not Found'] for any term not found in the index", function() {
+        expect(testIndex.searchIndex(["Thor"])).toEqual([
+          ['Not Found']
+        ]);
+        expect(testIndex.searchIndex("Hehe", "sheshe")).toEqual([
+          ['Not Found'],
+          ['Not Found']
+        ]);
+      });
+      it("Should accept a string as an argument", function() {
+        expect(testIndex.searchIndex("Alice", "of", "imagination")).toEqual([
+          ['0'],
+          ['0', '1'],
+          ['0']
+        ]);
+      });
     });
 
-describe('Error handling', function() {
-  it("Should throw an error for passing a typeof 'number' argument", function() {
-        expect(function() {testIndex.searchIndex(4);}).toThrow(new Error('Should be a string'));
-        expect(function() {testIndex.searchIndex("gerty", 4, "alice");}).toThrow(new Error('Should be a string'));
+    describe('Error handling', function() {
+      it("Should throw an error for passing a typeof 'number' argument", function() {
+        expect(function() {
+          testIndex.searchIndex(4);
+        }).toThrow(new Error('Should be a string'));
+        expect(function() {
+          testIndex.searchIndex("gerty", 4, "alice");
+        }).toThrow(new Error('Should be a string'));
       });
     });
   });
