@@ -69,7 +69,7 @@ var Index;
       } else {
         // Else, the parameter(s) is/are expected to be a string.
         for (var i = 0; i < arguments.length; i++) {
-          if (typeof arguments[i] === 'number') {
+          if (/\d/.test(arguments[i])) {
             throw err;
           } else {
             terms.push(arguments[i]);
