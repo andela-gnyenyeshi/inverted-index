@@ -11,7 +11,7 @@ var Index;
     this.index = {};
     // Unique terms to be omitted when creating index.
     this.unique = ['in', 'a', 'and', 'an', 'is', 'the'];
-  }
+  };
 
   // Inherited properties of Index constructor function.
   Index.prototype = {
