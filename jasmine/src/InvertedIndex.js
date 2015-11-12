@@ -89,7 +89,7 @@ var Index;
           arr.push(results);
         } else {
           // If term is not found in the index.
-          arr.push(["Not Found"]);
+          arr.push(['Not Found']);
         }
         // Empty results array after every loop.
         results = [];
